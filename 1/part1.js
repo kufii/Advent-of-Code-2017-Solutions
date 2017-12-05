@@ -6,9 +6,9 @@
 		var sum = 0;
 		for (var i = 0; i < numbers.length; i++) {
 			var num1 = numbers[i];
-			var num2 = i === numbers.length - 1 ? numbers[0] : numbers[i + 1];
+			var num2 = i === numbers[(i + 1) % numbers.length];
 			if (num1 === num2) {
-				sum += num1;
+				sum += parseInt(num1);
 			}
 		}
 		return sum;
