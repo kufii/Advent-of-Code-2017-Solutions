@@ -8,17 +8,26 @@
 		}
 	};
 
+	var getGrid = function(x, y) {
+		var value = grid[x.toString()];
+		if (value) {
+			return value[y.toString()] || 0;
+		}
+		return 0;
+	};
+
+	var setGrid = function(x, y, value) {
+		if (!grid[x.toString()]) {
+			grid[x.toString()] = {};
+		}
+		grid[x.toString()][y.toString()] = value;
+	};
+
 	var getSumSurrounding = function(x, y) {
 		var sum = 0;
 		for (var i = x - 1; i <= x + 1; i++) {
 			for (var j = y - 1; j <= y + 1; j++) {
-				var value = grid[i.toString()];
-				if (value) {
-					value = value[j.toString()];
-					if (value) {
-						sum += value;
-					}
-				}
+				sum += getGrid(i, j);
 			}
 		}
 		return sum;
@@ -51,10 +60,7 @@
 
 	while (currentValue <= stopAt) {
 		currentValue = getSumSurrounding(x, y);
-		if (!grid[x.toString()]) {
-			grid[x.toString()] = {};
-		}
-		grid[x.toString()][y.toString()] = currentValue;
+		setGrid(x, y, currentValue);
 
 		wallIndex++;
 		if (wallIndex === wallLength) {
