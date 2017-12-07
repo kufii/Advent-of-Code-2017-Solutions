@@ -77,14 +77,9 @@
 		return false;
 	};
 
-	input.forEach(function(program) {
-		if (program.children.length > 0) {
-			var childOccurances = input.filter(function(p) {
-				return p.children.indexOf(program.name) !== -1;
-			});
-			if (childOccurances.length === 0) {
-				findUnbalanced(getChain(program));
-			}
-		}
-	});
+	findUnbalanced(getChain(input.filter(function(program) {
+		return input.filter(function(p) {
+			return p.children.indexOf(program.name) !== -1;
+		}).length === 0;
+	})[0]));
 }());
