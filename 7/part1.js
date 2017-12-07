@@ -2,15 +2,11 @@
 	'use strict';
 
 	var input = document.querySelector('pre').textContent.trim().split('\n').map(function(line) {
-		var name = line.split(' ')[0];
-		var arrow = line.indexOf('->');
-		var children = [];
-		if (arrow !== -1) {
-			children = line.substring(arrow + 2).trim().split(', ');
-		}
+		var match = line.match(/([a-z]+) \(([0-9]+)\)(?: -> ([a-z, ]+))?$/);
 		return {
-			name: name,
-			children: children
+			name: match[1],
+			weight: parseInt(match[2]),
+			children: match[3] ? match[3].split(', ') : []
 		};
 	});
 
