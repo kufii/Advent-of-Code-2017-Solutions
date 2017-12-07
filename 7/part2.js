@@ -84,7 +84,6 @@
 			});
 			if (childOccurances.length === 0) {
 				findUnbalanced(getChain(program));
-				console.log(getChain(program));
 			}
 		}
 	});
