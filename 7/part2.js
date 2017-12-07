@@ -2,7 +2,7 @@
 	'use strict';
 
 	var input = document.querySelector('pre').textContent.trim().split('\n').map(function(line) {
-		var match = line.match(/([a-z]+) \(([0-9]+)\)(?: -> ([a-z, ]+))?$/);
+		var match = line.match(/^(\w+) \((\d+)\)(?: -> ([\w, ]+))?$/);
 		return {
 			name: match[1],
 			weight: parseInt(match[2]),
