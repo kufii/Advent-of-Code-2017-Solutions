@@ -4,8 +4,8 @@
 	var path = document.querySelector('pre').textContent.trim().split(',');
 
 	var getNumStepsToOrigin = function(x, y) {
-		absX = Math.abs(x);
-		absY = Math.abs(y);
+		var absX = Math.abs(x);
+		var absY = Math.abs(y);
 		return absX + Math.max(absY - (absX / 2), 0);
 	};
 
