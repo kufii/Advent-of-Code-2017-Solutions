@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	var runNTimes = function(num, callback) {
+	var runXTimes = function(num, callback) {
 		for(var i = 0; i < num; i++) {
 			callback();
 		}
@@ -27,13 +27,12 @@
 
 	var lengths = document.querySelector('pre').textContent.trim().split('').map(function(char) {
 		return char.charCodeAt(0);
-	});
-	lengths = lengths.concat([17, 31, 73, 47, 23]);
+	}).concat([17, 31, 73, 47, 23]);
 
 	var pos = 0;
 	var skip = 0;
 
-	runNTimes(64, function() {
+	runXTimes(64, function() {
 		lengths.forEach(function(length) {
 			var toReverse = subarray(pos, length).reverse();
 			for (var i = 0; i < toReverse.length; i++) {
@@ -54,13 +53,9 @@
 		}
 
 		if (i % 16 === 15) {
-			hash.push(block);
+			hash.push(block.toString(16));
 		}
 	}
 
-	var hashcode = hash.map(function(block) {
-		return block.toString(16);
-	}).join('');
-
-	console.log(hashcode);
+	console.log(hash.join(''));
 }());
