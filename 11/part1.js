@@ -4,7 +4,9 @@
 	var path = document.querySelector('pre').textContent.trim().split(',');
 
 	var getNumStepsToOrigin = function(x, y) {
-		return Math.abs(x) + Math.max(y - (x / 2), 0);
+		absX = Math.abs(x);
+		absY = Math.abs(y);
+		return absX + Math.max(absY - (absX / 2), 0);
 	};
 
 	var distance = {
