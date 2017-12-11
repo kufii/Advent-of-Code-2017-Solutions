@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	var runXTimes = function(num, callback) {
+	var runNTimes = function(num, callback) {
 		for(var i = 0; i < num; i++) {
 			callback();
 		}
@@ -33,7 +33,7 @@
 	var pos = 0;
 	var skip = 0;
 
-	runXTimes(64, function() {
+	runNTimes(64, function() {
 		lengths.forEach(function(length) {
 			var toReverse = subarray(pos, length).reverse();
 			for (var i = 0; i < toReverse.length; i++) {
