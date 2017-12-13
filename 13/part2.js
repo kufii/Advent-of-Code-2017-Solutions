@@ -10,37 +10,12 @@
 			maxDepth = depth;
 		}
 		layers[depth] = {
-			range: parseInt(match[2]),
-			scanner: 0,
-			scannerDirection: 1
+			range: parseInt(match[2])
 		};
 	});
 
-	var moveScanners = function() {
-		for (var property in layers) {
-			if (layers.hasOwnProperty(property)) {
-				var layer = layers[property];
-				layer.scanner += layer.scannerDirection;
-				if (layer.scanner === 0 || layer.scanner === layer.range - 1) {
-					layer.scannerDirection *= -1;
-				}
-			}
-		}
-	};
-
-	var movesUntilHit = function(layer) {
-		if (layer.scanner === 0) return 0;
-		if (layer.scannerDirection === -1) {
-			return layer.scanner;
-		} else {
-			return (layer.range - 1 - layer.scanner) + (layer.range - 1);
-		}
-
-	};
-
-	var willHitAfterNMoves = function(layer, moves) {
-		moves = moves % ((layer.range - 1) * 2);
-		return(movesUntilHit(layer) === moves);
+	var positionAfterNMoves = function(layer, moves) {
+		return (moves) % ((layers[i].range - 1) * 2);
 	};
 
 	var delay = 0;
@@ -49,7 +24,8 @@
 		var willHit = false;
 		for (var i = 0; i <= maxDepth; i++) {
 			if (layers[i]) {
-				if (willHitAfterNMoves(layers[i], i)) {
+				var position = positionAfterNMoves(layers[i], i + delay);
+				if (position === 0) {
 					willHit = true;
 					break;
 				}
@@ -59,7 +35,6 @@
 			break;
 		}
 		delay++;
-		moveScanners();
 	}
 
 	console.log(delay);
