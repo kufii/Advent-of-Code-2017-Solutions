@@ -23,8 +23,7 @@
 		willHit = false;
 		for (var i = 0; i <= maxDepth; i++) {
 			if (layers[i]) {
-				var position = positionAfterNMoves(layers[i], i + delay);
-				if (position === 0) {
+				if (positionAfterNMoves(layers[i], i + delay) === 0) {
 					willHit = true;
 					break;
 				}
