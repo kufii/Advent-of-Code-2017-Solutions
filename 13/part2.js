@@ -9,13 +9,11 @@
 		if (depth > maxDepth) {
 			maxDepth = depth;
 		}
-		layers[depth] = {
-			range: parseInt(match[2])
-		};
+		layers[depth] = parseInt(match[2]);
 	});
 
-	var positionAfterNMoves = function(layer, moves) {
-		return (moves) % ((layers[i].range - 1) * 2);
+	var positionAfterNMoves = function(range, moves) {
+		return (moves) % ((range - 1) * 2);
 	};
 
 	var delay = 0;
