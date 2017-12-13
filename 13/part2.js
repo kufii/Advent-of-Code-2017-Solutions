@@ -16,10 +16,11 @@
 		return (moves) % ((range - 1) * 2);
 	};
 
-	var delay = 0;
-
-	while (true) {
-		var willHit = false;
+	var delay = -1;
+	var willHit;
+	do {
+		delay++;
+		willHit = false;
 		for (var i = 0; i <= maxDepth; i++) {
 			if (layers[i]) {
 				var position = positionAfterNMoves(layers[i], i + delay);
@@ -29,11 +30,7 @@
 				}
 			}
 		}
-		if (!willHit) {
-			break;
-		}
-		delay++;
-	}
+	} while (willHit);
 
 	console.log(delay);
 }());
