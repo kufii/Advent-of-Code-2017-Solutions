@@ -83,7 +83,7 @@
 			var dec = parseInt(hex, 16);
 			return dec.toString(2).padStart(4, '0');
 		}).join('').split('').map(function(c) {
-			return c.replace(/1/g, '#').replace(/0/g, '&nbsp;&nbsp;.&nbsp;&nbsp;');
+			return c.replace(/1/g, '#').replace(/0/g, '.');
 		});
 		grid.push(row);
 	}
@@ -111,7 +111,7 @@
 				if (grid[y][x] === '#') {
 					found = true;
 					numGroups++;
-					floodFill(x, y, padCenter(numGroups.toString(), 5, '#').replace(/#/g, '&nbsp;'));
+					floodFill(x, y, numGroups.toString());
 				}
 			}
 		}
@@ -120,7 +120,9 @@
 	console.log(numGroups);
 
 	document.querySelector('pre').innerHTML = grid.map(function(row) {
-		return row.join('');
+		return row.map(function(col) {
+			return padCenter(col, numGroups.toString().length + 1, '*').replace(/\*/g, '&nbsp;');
+		}).join('');
 	}).join('</br>');
 
 	document.querySelector('pre').style.whiteSpace = 'nowrap';
