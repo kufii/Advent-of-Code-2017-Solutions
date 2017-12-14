@@ -53,7 +53,7 @@
 		}
 
 		if (i % 16 === 15) {
-			hash.push(block.toString(16));
+			hash.push(block.toString(16).padStart(2, '0'));
 		}
 	}
 
