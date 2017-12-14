@@ -94,17 +94,13 @@
 	while (found) {
 		found = false;
 
-		for (var y = 0; y < grid.length; y++) {
-			for (var x = 0; x < grid[0].length; x++) {
+		for (var y = 0; y < grid.length && !found; y++) {
+			for (var x = 0; x < grid[0].length && !found; x++) {
 				if (grid[y][x] === 1) {
 					found = true;
 					numGroups++;
 					floodFill(x, y);
-					break;
 				}
-			}
-			if (found) {
-				break;
 			}
 		}
 	}
