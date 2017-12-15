@@ -1,4 +1,3 @@
-// just for fun, outputs the grid with groups if you run it on http://adventofcode.com/2017/day/14/input
 (function() {
 	'use strict';
 
