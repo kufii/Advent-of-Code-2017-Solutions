@@ -7,6 +7,14 @@
 		}
 	};
 
+	var arraysMatch = function(a, b) {
+		if (a.length !== b.length) return false;
+		for (var i = 0; i < a.length; i++) {
+			if (a[i] !== b[i]) return false;
+		}
+		return true;
+	};
+
 	var array = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
 	var init = array.slice();
 
@@ -50,12 +58,7 @@
 
 	do {
 		runInstructions();
-		match = true;
-		for (var i = 0; i < init.length; i++) {
-			if (array[i] !== init[i]) {
-				match = false;
-			}
-		}
+		match = arraysMatch(array, init);
 		timesRun++;
 	} while(!match && timesRun < 1000000000);
 
@@ -64,4 +67,4 @@
 	}
 
 	console.log(array.join(''));
-}());
+}());     
