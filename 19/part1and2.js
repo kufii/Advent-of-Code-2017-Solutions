@@ -9,22 +9,10 @@
 		return line.split('');
 	});
 
-	var getStartingPoint = function() {
-		var coord = {
-			y: 0
-		};
-
-		for (var x = 0; x < maze[0].length; x++) {
-			if (maze[0][x] === '|') {
-				coord.x = x;
-				break;
-			}
-		}
-
-		return coord;
+	var coord = {
+		x: maze[0].indexOf('|'),
+		y: 0
 	};
-
-	var coord = getStartingPoint();
 	var direction = {
 		x: 0,
 		y: 1
