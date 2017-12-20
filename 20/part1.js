@@ -4,9 +4,9 @@
 		var match = p.match(/^p=<([\d\-]+),([\d\-]+),([\d\-]+)>, v=<([\d\-]+),([\d\-]+),([\d\-]+)>, a=<([\d\-]+),([\d\-]+),([\d\-]+)>/);
 		var triplet = function(start) {
 			return {
-				x: parseInt(parseInt(match[start])),
-				y: parseInt(parseInt(match[start + 1])),
-				z: parseInt(parseInt(match[start + 2]))
+				x: parseInt(match[start]),
+				y: parseInt(match[start + 1]),
+				z: parseInt(match[start + 2])
 			};
 		};
 		return {
