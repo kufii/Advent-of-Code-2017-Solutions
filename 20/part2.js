@@ -35,7 +35,7 @@
 	var allMovingAway = false;
 	while (!allMovingAway) {
 		allMovingAway = true;
-		particles.forEach(function(particle, index) {
+		particles.forEach(function(particle) {
 			particle.update();
 			if (!particle.isMovingAwayFromOrigin()) {
 				allMovingAway = false;
