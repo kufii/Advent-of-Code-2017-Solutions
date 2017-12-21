@@ -7,17 +7,25 @@
 		}
 	};
 
+	var stringToSquare = function(str) {
+		return str.split('/').map(function(row) {
+			return row.split('');
+		});
+	};
+
+	var squareToString = function(square) {
+		return square.map(function(row) {
+			return row.join('');
+		}).join('/');
+	};
+
 	var rules = {};
 	document.querySelector('pre').textContent.trim().split('\n').forEach(function(line) {
 		var rule = line.split(' => ');
-		rules[rule[0]] = rule[1].split('/').map(function(row) {
-			return row.split('');
-		});
+		rules[rule[0]] = stringToSquare(rule[1]);
 	});
 
-	var grid = '.#./..#/###'.split('/').map(function(line) {
-		return line.split('');
-	});
+	var grid = stringToSquare('.#./..#/###');
 
 	var getNumOn = function() {
 		return (grid.map(function(row) {
@@ -55,24 +63,18 @@
 		return square.slice().reverse();
 	};
 
-	var getRuleNameFromSquare = function(square) {
-		return square.map(function(row) {
-			return row.join('');
-		}).join('/');
-	};
-
 	var getRule = function(square) {
 		var rule;
 		for (var i = 0; i < 4; i++) {
 			square = rotateSquareCounterClockwise(square);
 
-			rule = getRuleNameFromSquare(square);
+			rule = squareToString(square);
 			if (rules[rule]) return rules[rule];
 
-			rule = getRuleNameFromSquare(flipSquareHorizontally(square));
+			rule = squareToString(flipSquareHorizontally(square));
 			if (rules[rule]) return rules[rule];
 
-			rule = getRuleNameFromSquare(flipSquareVertically(square));
+			rule = squareToString(flipSquareVertically(square));
 			if (rules[rule]) return rules[rule];
 		}
 
