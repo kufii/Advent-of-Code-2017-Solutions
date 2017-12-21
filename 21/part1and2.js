@@ -10,7 +10,9 @@
 	var rules = {};
 	document.querySelector('pre').textContent.trim().split('\n').forEach(function(line) {
 		var rule = line.split(' => ');
-		rules[rule[0]] = rule[1];
+		rules[rule[0]] = rule[1].split('/').map(function(row) {
+			return row.split('');
+		});
 	});
 
 	var grid = '.#./..#/###'.split('/').map(function(line) {
@@ -88,9 +90,7 @@
 		for (var x = 0; x < grid[0].length / length; x++) {
 			for (var y = 0; y < grid.length / length; y++) {
 				var square = getSquare(x * length, y * length, length);
-				var rule = getRule(square).split('/').map(function(row) {
-					return row.split('');
-				});
+				var rule = getRule(square);
 				for (var i = 0; i < rule[0].length; i++) {
 					for (var j = 0; j < rule.length; j++) {
 						var yIndex = y * rule.length + j;
