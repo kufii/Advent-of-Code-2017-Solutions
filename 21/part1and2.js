@@ -28,9 +28,7 @@
 	var grid = stringToSquare('.#./..#/###');
 
 	var getNumOn = function() {
-		return (grid.map(function(row) {
-			return row.join('');
-		}).join('').match(/#/g) || []).length;
+		return (squareToString(grid).match(/#/g) || []).length;
 	};
 
 	var getSquare = function(xPos, yPos, length) {
