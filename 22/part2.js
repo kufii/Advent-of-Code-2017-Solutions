@@ -66,8 +66,7 @@
 			turn(true);
 			setGrid(pos.x, pos.y, 'F');
 		} else if (node === 'F') {
-			turn();
-			turn();
+			runNTimes(2, turn);
 			setGrid(pos.x, pos.y, '.');
 		}
 
