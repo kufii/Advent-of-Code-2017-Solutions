@@ -30,21 +30,20 @@
 	var input = document.querySelector('pre').textContent.trim().split('\n\n');
 	
 	var pos = 0;
-	var state = input[0].match(/Begin in state (\w)/)[1];
-	var numSteps = parseInt(input[0].match(/diagnostic checksum after (\d+)/)[1]);
+	var state = input[0].match(/state (\w)/)[1];
+	var numSteps = parseInt(input[0].match(/(\d+)/)[1]);
 	
 	var rules = {};
-	input.shift();
-	input.forEach(function(rule) {
+	input.slice(1).forEach(function(rule) {
 		var lines = rule.split('\n');
 		var parseData = function(startIndex) {
 			return {
-				value: parseInt(lines[startIndex].match(/value (\d)/)[1]),
-				move: lines[startIndex + 1].match(/slot to the (\w+)./)[1] === 'right' ? 1 : -1,
-				state: lines[startIndex + 2].match(/state (\w)/)[1]
-			}
+				value: parseInt(lines[startIndex].match(/(\d)/)[1]),
+				move: lines[startIndex + 1].match(/right/) ? 1 : -1,
+				state: lines[startIndex + 2].match(/(\w)\./)[1]
+			};
 		};
-		rules[lines[0].match(/In state (\w)/)[1]] = {
+		rules[lines[0].match(/(\w):/)[1]] = {
 			0: parseData(2),
 			1: parseData(6)
 		};
