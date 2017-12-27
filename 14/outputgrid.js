@@ -74,7 +74,7 @@
 			if (i % 16 === 0) {
 				block = numAt(i);
 			} else {
-				block = block ^ numAt(i);
+				block ^= numAt(i);
 			}
 
 			if (i % 16 === 15) {
